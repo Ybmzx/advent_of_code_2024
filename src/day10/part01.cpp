@@ -22,7 +22,6 @@ int dfs(int x, int y) {
         int nx = x + dir[i][0], ny = y + dir[i][1];
         if (nx > 0 && nx <= n &&
             ny > 0 && ny <= n &&
-            !vis[nx][ny] &&
             mp[nx][ny] - mp[x][y] == 1)
                 res += dfs(nx, ny);
     }

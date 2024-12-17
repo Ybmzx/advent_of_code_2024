@@ -58,7 +58,7 @@ bool move_box(Point box_position, char direction) {
     }
 }
 
-Point move(Point robot_position, char direction) {
+Point move_robot(Point robot_position, char direction) {
     Point next = {
         robot_position.x + get_direction(direction).x,
         robot_position.y + get_direction(direction).y
@@ -88,7 +88,7 @@ int main() {
     Point robot = get_robot_position();
     for (char op : operations) {
         grids[robot.x][robot.y] = '.';
-        robot = move(robot, op);
+        robot = move_robot(robot, op);
         grids[robot.x][robot.y] = '@';
     }
     int ans = 0;

@@ -125,15 +125,14 @@ bool try_move_box(Point box_position, char direction) {
     return can_move;
 }
 
-Point move(Point robot_position, char direction) {
+Point move_robot(Point robot_position, char direction) {
     Point next = robot_position + get_direction(direction);
     switch (wide_grids[next.x][next.y]) {
         case '#':
             return robot_position;
         case '[':
         case ']': {
-            bool f = try_move_box(next, direction);
-            return f ? next : robot_position;
+            return try_move_box(next, direction) ? next : robot_position;
         }
         default:
             return next;
@@ -173,7 +172,7 @@ int main() {
     Point robot = get_robot_position();
     for (char op : operations) {
         wide_grids[robot.x][robot.y] = '.';
-        robot = move(robot, op);
+        robot = move_robot(robot, op);
         wide_grids[robot.x][robot.y] = '@';
     }
     int ans = 0;
